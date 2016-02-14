@@ -54,27 +54,20 @@ class MicroBlogger
   end
 end
 
+
 if __FILE__ == $PROGRAM_NAME
-  blogger = MicroBlogger.new
-  puts "\nWelcome to the JSL Twitter client!"
-  puts "Available commands:"
-  puts "   q => quit"
-  puts "   dm => direct message "
-  puts "   t => tweet"
-  puts "   g => see all the latest tweets from friends\n\n"
-  command = ""
-  commands = {"dm" => "route_dm", "t"=>"tweet", "q"=>"quit",
-              "g" => "get_all_latest_friends_tweets"}
-  while command != "quit"
-    print "Enter command:  "
-    command = commands[gets.chomp]
-    if blogger.respond_to?(command)
-      blogger.send(command)
-      puts
-    elsif command == "quit"
-      break
-    else puts "Sorry, that command is not set!"
+  copy = MicroBlogger.new
+  copy.tweet
+
+    while true
+      puts "do you want to tweet again?"
+      response = gets.chomp
+        if response.include?("y")
+          copy.tweet
+        else
+          break
+        end
     end
-  end
-  puts "\nThanks for using the JSL Twitter client!\n\n"
 end
+
+
